@@ -1,4 +1,3 @@
-
 from zss import simple_distance, Node
 from lxml import etree
 import markdown

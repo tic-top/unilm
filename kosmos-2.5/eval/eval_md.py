@@ -1,11 +1,11 @@
-from ned import calculate_ned
-from nted import calculate_nted
-import argparse
 import os
-from multiprocessing import Pool
-import sys
-from tqdm import tqdm
 import json
+import argparse
+from multiprocessing import Pool
+from tqdm import tqdm
+
+from utils import calculate_ned, calculate_nted
+
 
 def calculate(gt_path, pred_path):
     try:
@@ -64,20 +64,24 @@ def calculate(gt_path, pred_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--gt", "-g", type=str, default="case/")
-    parser.add_argument("--pred", "-p", type=str, default="case/")
+    parser.add_argument("--data", "-d", type=str, default="/home/yuzhongzhao/zyz/ckpts/eval/", help="Path to the evaluation data")
+    parser.add_argument("--type", "-t", type=str, default="image2latex", help="Data type")
+    parser.add_argument("--pred", "-p", type=str, default="case/", help="Path to the predictions")
     
     args = parser.parse_args()
     name = args.pred.split("/")[-1]
 
+    gt_dir = os.path.join(args.data, args.type, "mds")
+    assert os.path.exists(gt_dir)
+
     gt_paths, pred_paths = [], []
     total = 0
     # map in parallel
-    for root, dirs, files in os.walk(args.gt):
+    for root, dirs, files in os.walk(gt_dir):
         for file in tqdm(files, desc=name+" map", disable=True, colour="green"):
             if file.endswith(".md"):
                 total += 1
-                gt_path = os.path.join(args.gt, file)
+                gt_path = os.path.join(gt_dir, file)
                 pred_path = os.path.join(args.pred, file)
                 if not os.path.exists(pred_path):
                     # print(f"missing {pred_path}")
