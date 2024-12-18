@@ -76,7 +76,7 @@ For images with extreme aspect ratios, we recommend resizing images to a more ty
   - `--hw_ratio_adj_lower_span "[0.5, 1.0]"` indicates that if the image's aspect ratio is between 0.5 and 1.0, the image will be resized to an aspect ratio of 1.0.
 
 ## OCREval and MarkdownEval Benchmarks
-The test images of OCREval and MarkdownEval benchmarks can be downloaded [HERE](). Please download the test images first and then run the following scripts for model testing. We use the ground-truth data as predictions (`result_dir`) in the following script, which should be replaced to the predictions of your own algorithm to evaluate the performance. Please convert the model predictions to the format of the ground-truth data so the model can be correctly evaluated.
+You can download the test images for the OCREval and MarkdownEval benchmarks [HERE](). First, download the test images, and then run the following scripts to test your model. In the provided scripts, the ground-truth data is used as the predictions (result_dir). You should replace this with the predictions from your model. Ensure that your model’s predictions are in the same format as the ground-truth data for correct evaluation.
   ``` bash
   bask eval/eval_md.sh $PATH_TO_YOUR_TEST_IMAGES
   bash eval/eval_ocr.sh $PATH_TO_YOUR_TEST_IMAGES
