@@ -1,5 +1,5 @@
 
-data="/home/yuzhongzhao/zyz/ckpts/eval"
+data=$1
 names=("cord" "mt_sj" "gptocr2" "OpenLibrary" "LAION" "receipts" "hwfont" "gptocr4" "TMDB" "parallel_chrome_math" "parallel_docx" "parallel_sec" "parallel_web_1" "funsd" "sroie" "parallel_arxiv")
 
 

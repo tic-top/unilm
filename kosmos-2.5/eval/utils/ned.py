@@ -5,9 +5,7 @@ from Levenshtein import distance
 def calculate_ned(str1, str2):
 
     if len(str1) == 0 and len(str2) == 0:
-        d = 0
-        ned = 1
-        return d, ned
+        return 1
 
     d = distance(str1, str2)
     ned = 1 - d / max(len(str1), len(str2))
@@ -29,8 +27,8 @@ if __name__ == '__main__':
     sum = 0
     for testcase in testcases:
         str1, str2 = testcase
-        d, ned = calculate_ned(str1, str2)       
-        print(f'{str1} {str2} ned: {ned}, d: {d}')
+        ned = calculate_ned(str1, str2)
+        print(f'{str1} {str2} ned: {ned}')
         total += 1 
         sum += ned
 

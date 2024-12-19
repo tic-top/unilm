@@ -1,5 +1,5 @@
 
-data="/home/yuzhongzhao/zyz/ckpts/eval"
+data=$1
 names=("image2latex" "chrome_math_md" "docx_md_unzip_test2" "arxiv_md" "table_md_unzip_test2" "readme_md_unzip_test")
 
 

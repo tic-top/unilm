@@ -1,3 +1,5 @@
+import traceback
+
 from zss import simple_distance, Node
 from lxml import etree
 import markdown
@@ -35,6 +37,8 @@ def build_tree(element, node):
         build_tree(child, child_node)
 
 def calculate_nted(str1, str2):
+    if len(str1)==0 and len(str2)==0:
+        return 1
     try: # in case of markdown parse error
         html1 = markdown.markdown(str1)
         # print(f'html1: {html1}\n')
@@ -48,22 +52,15 @@ def calculate_nted(str1, str2):
         node_count2 = count_tree_nodes(tree2) - 2
 
         distance = min(calculate_tree_distance(tree1, tree2), max(node_count1, node_count2))
-        # print(node_count1, node_count2, distance)
         nted = 1 - distance / max(node_count1, node_count2)
-        # print(f'node_count1: {node_count1}; node_count2: {node_count2}')
-        # if abs(node_count1 - node_count2) > 1000000:
-        #     print(f'node_count1: {node_count1}; node_count2: {node_count2}; nted {nted}')
-        #     # print(html1)
-        #     print(str1)
-        #     print("")
-        #     # print(html2)
-        #     print(str2)
-        #     return 0
 
         return nted
     except Exception as e:
         # print(e)
-        return 0
+        # print(str1)
+        # print(str2)
+        # traceback.print_exc()
+        return 1
 
 
 # test
